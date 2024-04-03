@@ -1,0 +1,18 @@
+<div class="bg-gray-100 m-5 p-16">
+    <h1 class="text-center font-extrabold mt-4 p-5 text-5xl font-serif text-gray-900">SpaceX Mission Details</h1>
+    <div class="grid-cols-1 m-8 p-5 border-4 border-gray-700 text-gray-900 text-center">
+        <img src="{{launch.links.mission_patch_small}}" alt="Mission Patch" class="mx-auto"/>
+        <div class="pl-5">
+            <h3 class="font-bold text-3xl mt-3 font-mono">Mission - {{launch.mission_name}}</h3>
+            <p class="font-mono">Launch Year: {{launch.launch_year}}</p>
+            <h3 class="font-bold mt-3 text-3xl font-mono">Rocket</h3>
+            <p class="font-mono">Name: {{launch.rocket.rocket_name}}</p>
+            <p class="font-mono">Type: {{launch.rocket.rocket_type}}</p>
+            <h3 class="font-bold text-3xl mt-3 font-mono">Launch Site</h3>
+            <p class="font-mono">Location: {{launch.launch_site.site_name_long}}</p>
+            <h3 class="font-bold text-3xl mt-3 font-mono">Launch Details</h3>
+            <p class="font-mono">{{launch.details}}</p>
+        </div>
+    </div>
+    <a [routerLink]="'/'" class="p-4 mt-4 bg-gray-900 content-center text-white hover:bg-blue-700 block mx-auto w-max">Back to Mission List</a>
+</div>

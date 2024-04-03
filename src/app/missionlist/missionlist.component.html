@@ -1,0 +1,42 @@
+<div>
+    <h1 class="text-center font-extrabold my-4 p-5 text-5xl font-serif">SpaceX Mission Launch List</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Launch Year Filter Section -->
+        <div class="col-span-1">
+            <div class="rounded-md text-center border-4 border-white bg-gray-400 m-4 p-4">
+                <h3 class="text-2xl font-mono">Filter Data</h3>
+                <ul class="p-4">
+                    <li class="font-mono mb-4 font-bold text-xl">Year</li>
+                    <li class="rounded p-1 m-1 bg-gray-800 active:bg-orange-700" *ngFor="let year of launchYears; let i = index" (click)="filterLaunch(i, year)">{{year}}</li>
+                    <li class="font-mono my-4 font-bold text-xl">Launch Success/Failure</li>
+                    <li class="rounded p-1 m-1 bg-gray-800 active:bg-orange-700" (click)="filterSuccessfulLaunches()">Successful Launches</li>
+                    <li class="rounded p-1 m-1 bg-gray-800 active:bg-orange-700" (click)="filterFailedLaunches()">Failed Launches</li>
+                    <li class="font-mono my-4 font-bold text-xl">Landing Success/Failure</li>
+                    <li class="rounded p-1 m-1 bg-gray-800 active:bg-orange-700" (click)="filterSuccessfulLandings()">Successful Landings</li>
+                    <li class="rounded p-1 m-1 bg-gray-800 active:bg-orange-700" (click)="filterFailedLandings()">Failed Landings</li>
+                    <li class="rounded p-1 m-1 bg-amber-500 text-black mt-3" (click)="clearFilter()">Reset Filters</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Launch Cards Section -->
+        <div class="col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+                <a *ngFor="let launch of launches" [routerLink]="['/missiondetails', launch.flight_number]" class="block border-white border-2 bg-gray-800 shadow-2xl shadow-blue-950 m-2 mx-5 mb-8 hover:-translate-y-2.5 mt-4 hover:scale-105">
+                    <div class="bg-black flex justify-center items-center">
+                        <img class="p-2.5" src="{{launch.links.mission_patch_small}}" alt="Mission Patch" />
+                    </div>
+                    <div class="p-6 text-surface dark:text-white">
+                        <h3 class="mb-4 font-bold font-mono text-center text-xl">{{launch.mission_name}}</h3>
+                        <p class="font-mono mb-2">Launch Year: {{launch.launch_year}}</p>
+                        <p class="font-mono mb-2">Launch Success: {{launch.launch_success}}</p>
+                        <p class="font-mono mb-4">Land Success: {{ launch.rocket.first_stage.cores[0].land_success !== null ? launch.rocket.first_stage.cores[0].land_success : 'No data' }}</p>
+                        <p class="font-mono mb-2">Details: <i class="text-sm">{{launch.details !== null ? launch.details : 'No data'}}</i></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
